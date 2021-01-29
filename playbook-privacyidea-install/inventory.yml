@@ -1,8 +1,8 @@
 all:
   hosts:
-    ect-dev-app0023.educonnect.in.cloe.education.gouv.fr:
+    hist1:
   vars:
-    ansible_user: jcochennec1
+    ansible_user: ansible
     dependencies:
       - gcc
       - git
@@ -19,7 +19,7 @@ all:
     env_user: privacyidea
     env_python_version: 3.9
     env_conda_channels:
-      - https://nexus.forge.education.gouv.fr/repository/anaconda-proxy/pkgs/free/linux-64
+      - defaults
     env_conda_dependencies:
       - pip
       - python=3.9.1
@@ -32,7 +32,7 @@ all:
     privacyidea_database_sgbd: postgresql
     privacyidea_database_user: privacyidea
     privacyidea_database_password: Pa55w0rd
-    privacyidea_database_host: ect-dev-app0024.educonnect.in.cloe.education.gouv.fr
+    privacyidea_database_host: postgres1
     privacyidea_database_port: 5432
     privacyidea_database_name: privacyidea
     privacyidea_secret_key: 't0p s3cr3t'
@@ -46,6 +46,6 @@ all:
     privacyidea_log_level: debug
     privacyidea_log_dir: /logs
     privacyidea_flask_mode: production
-    privacyidea_admin_username: jcochennec1
-    privacyidea_admin_email: julien.cochennec@ac-orleans-tours.fr
+    privacyidea_admin_username: admin
+    privacyidea_admin_email: admin@localhost
     privacyidea_admin_password: Pa55w0rd
