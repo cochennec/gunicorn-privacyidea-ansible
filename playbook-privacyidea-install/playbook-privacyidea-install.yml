@@ -1,0 +1,9 @@
+---
+- name: privacyidea
+  hosts: all
+  roles:
+    # - role: role-permanent-proxy-configure
+    - role: role-dependencies-install
+    # - role: role-miniconda-install
+    # - role: role-miniconda-env-create
+    - role: role-privacyidea-configure

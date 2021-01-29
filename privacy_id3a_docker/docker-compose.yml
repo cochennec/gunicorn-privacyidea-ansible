@@ -1,0 +1,49 @@
+version: '3.5'
+services:
+  ldap-account-manager:
+    build:
+      context: .
+      args:
+       - LAM_RELEASE=7.2.RC1
+    image: ldapaccountmanager/lam:latest
+    restart: unless-stopped
+    ports:
+      - "8001:80"
+    volumes:
+      - lametc/:/etc/ldap-account-manager
+      - lamconfig/:/var/lib/ldap-account-manager/config
+      - lamsession/:/var/lib/ldap-account-manager/sess
+    environment:
+      - LAM_PASSWORD=${LAM_PASSWORD}
+      - LAM_LANG=en_US
+      - LDAP_SERVER=${LDAP_SERVER}
+      - LDAP_DOMAIN=${LDAP_DOMAIN}
+      - LDAP_BASE_DN=${LDAP_BASE_DN}
+      - ADMIN_USER=cn=admin,${LDAP_BASE_DN}
+      - DEBUG=true
+  ldap:
+    image: i2hm/openldap:latest
+    restart: unless-stopped
+    command: "--loglevel info --copy-service"
+    volumes:
+      - ldap:/var/lib/ldap
+      - slapd:/etc/ldap/slapd.d
+  privacy-idea:
+    image: i2hm/privacyidea:latest
+    restart: unless-stopped
+    ports: "8000:8000"
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+volumes:
+  lametc:
+  lamconfig:
+  lamsession:
+  ldap:
+  slapd:

@@ -1,0 +1,51 @@
+all:
+  hosts:
+    ect-dev-app0023.educonnect.in.cloe.education.gouv.fr:
+  vars:
+    ansible_user: jcochennec1
+    dependencies:
+      - gcc
+      - git
+      - libjpeg-dev
+      - zlib1g-dev
+      - python-dev
+      - libffi-dev
+      - libssl-dev
+      - libxslt1-dev
+      - libpq-dev
+      - systemd
+    env_description: privacyidea
+    env_version: '3.5'
+    env_user: privacyidea
+    env_python_version: 3.9
+    env_conda_channels:
+      - https://nexus.forge.education.gouv.fr/repository/anaconda-proxy/pkgs/free/linux-64
+    env_conda_dependencies:
+      - pip
+      - python=3.9.1
+      - psycopg2
+    env_pip_dependencies:
+      - cryptography==3.3.1
+      - gunicorn==20.0.4
+      - privacyidea==3.5
+      - sqlalchemy==1.3.22
+    privacyidea_database_sgbd: postgresql
+    privacyidea_database_user: privacyidea
+    privacyidea_database_password: Pa55w0rd
+    privacyidea_database_host: ect-dev-app0024.educonnect.in.cloe.education.gouv.fr
+    privacyidea_database_port: 5432
+    privacyidea_database_name: privacyidea
+    privacyidea_secret_key: 't0p s3cr3t'
+    privacyidea_pepper: 'Never know...'
+    privacyidea_encoding_file: '{{ env_prefix }}/lib/python{{ env_python_version }}/site-packages/enckey'
+    privacyidea_audit_key_private: '{{ env_prefix }}/lib/python{{ env_python_version }}/site-packages/private.pem'
+    privacyidea_audit_key_public: '{{ env_prefix }}/lib/python{{ env_python_version }}/site-packages/public.pem'
+    privacyidea_workers: 4
+    privacyidea_listen_ip: 0.0.0.0
+    privacyidea_port: 5000
+    privacyidea_log_level: debug
+    privacyidea_log_dir: /logs
+    privacyidea_flask_mode: production
+    privacyidea_admin_username: jcochennec1
+    privacyidea_admin_email: julien.cochennec@ac-orleans-tours.fr
+    privacyidea_admin_password: Pa55w0rd
